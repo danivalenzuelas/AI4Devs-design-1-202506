@@ -264,7 +264,6 @@ El documento markdown final debe:
 Tu entrega será evaluada según:
 
 ✅ **Completitud:** Todos los entregables están presentes y completos
-
 ✅ **Innovación:** Las propuestas son innovadoras y diferenciadas
 
 ✅ **Viabilidad técnica:** Las soluciones son implementables en un MVP
