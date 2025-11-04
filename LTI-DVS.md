@@ -1732,8 +1732,9 @@ APILayer[API Layer<br/>FastAPI Routes<br/>- /parse-resume<br/>- /score-candidate
     QueueConsumer --> JobDescGenerator
 ```
 
-Descripción de Componentes:
-API Layer:
+#### Descripción de Componentes
+
+##### API Layer
 
 Responsabilidad: Exponer endpoints REST para que Core API consuma las funcionalidades de IA
 Endpoints principales:
@@ -1745,46 +1746,46 @@ GET /candidate-insights/{id}: Genera insights del candidato
 
 Tecnología: FastAPI con Pydantic para validación de schemas
 
-CV Processing Module:
+##### CV Processing Module
 
-Resume Parser:
+###### Resume Parser
 
 Extrae texto de PDFs y DOCX usando pdf.js y python-docx
 Identifica layout y secciones usando reglas y ML
 Tokeniza y procesa con SpaCy
 
-Structured Data Extractor:
+###### Structured Data Extractor
 
 Usa Named Entity Recognition (NER) para extraer entidades: nombres, fechas, empresas, ubicaciones
 Parsea secciones: contacto, experiencia laboral, educación, skills
 Normaliza fechas y formatos
 Valida y estructura data en JSON schema definido
 
-Candidate Scoring Module:
+##### Candidate Scoring Module
 
-Score Calculator:
+###### Score Calculator
 
 Recibe candidato y job posting como input
 Ingeniería de features: años de experiencia, skills match rate, industry match, education level, etc.
 Ejecuta modelo de ML entrenado (Random Forest o Gradient Boosting) que predice probabilidad de éxito
 Convierte probabilidad a score 0-100
 
-Match Analyzer:
+###### Match Analyzer
 
 Compara skills del candidato vs requirements del job usando embeddings semánticos
 Calcula similarity scores con cosine similarity
 Identifica gaps de skills
 Determina relevancia de experiencias previas
 
-ML Model Registry:
+###### ML Model Registry
 
 Almacena modelos entrenados versionados
 Permite cargar diferentes versiones para A/B testing
 Incluye metadata: accuracy, fecha de entrenamiento, dataset usado
 
-Content Generation Module:
+##### Content Generation Module
 
-Job Description Generator:
+###### Job Description Generator
 
 Recibe job requisition como input
 Construye prompt estructurado con contexto: industria, seniority, company culture
@@ -1792,56 +1793,56 @@ Llama a GPT-4 vía OpenAI API con temperatura 0.7
 Parsea respuesta y estructura en secciones: description, responsibilities, requirements, benefits
 Post-procesa para SEO: identifica keywords, optimiza legibilidad
 
-Interview Questions Generator:
+###### Interview Questions Generator
 
 Genera preguntas tailored basadas en el role y el perfil del candidato
 Identifica áreas a explorar basado en scoring y concerns
 Categoriza preguntas: technical, behavioral, situational
 Incluye follow-up questions sugeridas
 
-Insights Generator:
+###### Insights Generator
 
 Analiza CV parseado + scoring + job requirements
 Genera resumen ejecutivo de fortalezas del candidato
 Identifica red flags automáticamente (gaps en experiencia, job hopping, etc.)
 Provee recomendaciones para next steps
 
-NLP Core:
+##### NLP Core
 
-Text Processor:
+###### Text Processor
 
 Pipeline de SpaCy para tokenization, lemmatization, POS tagging
 Named Entity Recognition con modelo pre-entrenado + custom training
 Extracción de skills técnicas con diccionario custom
 
-Embedding Service:
+###### Embedding Service
 
 Genera sentence embeddings usando Sentence-BERT
 Cachea embeddings en Redis para performance
 Calcula similarity entre textos (candidato skills vs job requirements)
 
-External AI Integration:
+##### External AI Integration
 
-OpenAI Client:
+###### OpenAI Client
 
 Wrapper sobre OpenAI Python SDK
 Manejo de prompts con templates Jinja2
 Parsing de responses con validación de schemas
 Error handling y retries con backoff exponencial
 
-Rate Limiter:
+###### Rate Limiter
 
 Implementa token bucket algorithm para no exceder rate limits de OpenAI
 Trackea tokens consumidos y costos
 Implementa fallback: si OpenAI falla, usa templates predefinidos
 
-Data Access Layer:
+##### Data Access Layer
 
 Database Connector: SQLAlchemy ORM para acceso a PostgreSQL
 S3 Connector: boto3 SDK para download/upload de resumes
 Cache Connector: Redis client para cache de resultados costosos
 
-Queue Consumer:
+##### Queue Consumer
 
 Escucha queue de RabbitMQ para procesamiento asíncrono
 Procesa jobs en batch cuando hay alto volumen
