@@ -103,7 +103,7 @@ Para cada caso de uso incluye:
 
 Diseñar un modelo de datos relacional completo que incluya:
 
-#### 3.1. Lista de Entidades\*\*
+#### 3.1. Lista de Entidades
 
 Mínimo 12 entidades, incluyendo pero no limitado a:
 
@@ -264,9 +264,15 @@ El documento markdown final debe:
 Tu entrega será evaluada según:
 
 ✅ **Completitud:** Todos los entregables están presentes y completos
+
 ✅ **Innovación:** Las propuestas son innovadoras y diferenciadas
+
 ✅ **Viabilidad técnica:** Las soluciones son implementables en un MVP
+
 ✅ **Claridad:** La documentación es clara y puede ser seguida por un equipo de desarrollo
+
 ✅ **Diagramas:** Los diagramas Mermaid son correctos y renderizables
+
 ✅ **Coherencia:** Todos los componentes están alineados entre sí
+
 ✅ **Enfoque en IA:** La integración de IA es significativa y práctica
